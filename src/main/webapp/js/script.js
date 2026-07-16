@@ -90,16 +90,22 @@ if (isQuestionPage) {
     hintText.textContent = hintMsgs[hintIndex];
   }
 
-  /* ── Trigger on mouse enter (desktop) ───────────────────── */
-  noBtn.addEventListener('mouseenter', function () {
-    moveNoButton();
-  });
+/* Move when cursor hovers over NO button */
+noBtn.addEventListener('mouseenter', function () {
+  moveNoButton();
+});
 
-  /* ── Trigger on touch start (mobile) ────────────────────── */
-  noBtn.addEventListener('touchstart', function (e) {
-    e.preventDefault();
-    moveNoButton();
-  });
+/* Move when user tries to click NO button */
+noBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  moveNoButton();
+});
+
+/* Move when user tries to touch NO button on mobile */
+noBtn.addEventListener('touchstart', function (e) {
+  e.preventDefault();
+  moveNoButton();
+});
 
   /* ── If somehow clicked (very hard to do!) ──────────────── */
   function noClicked() {
