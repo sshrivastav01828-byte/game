@@ -46,49 +46,57 @@ if (isQuestionPage) {
   ];
 
   /* ── Move NO button to a random screen position ─────────── */
-  function moveNoButton() {
-    /* Switch to fixed positioning so it can move anywhere */
-    noBtn.style.position = 'fixed';
-    noBtn.style.transition = 'left 0.15s, top 0.15s';
+  /* ── Move NO button to a random position INSIDE the screen ── */
+function moveNoButton() {
 
-    var btnW = noBtn.offsetWidth  || 120;
-    var btnH = noBtn.offsetHeight || 50;
+  /* Allow the button to move anywhere on the visible screen */
+  noBtn.style.position = 'fixed';
+  noBtn.style.transition = 'left 0.15s ease, top 0.15s ease';
 
-    /* Pick a random spot that is NOT near the current position */
-    var maxX = window.innerWidth  - btnW - 20;
-    var maxY = window.innerHeight - btnH - 20;
+  var btnW = noBtn.offsetWidth || 120;
+  var btnH = noBtn.offsetHeight || 50;
 
-    var newX, newY, attempts = 0;
-    do {
-      newX = Math.random() * maxX + 10;
-      newY = Math.random() * maxY + 10;
-      attempts++;
-    } while (
-      attempts < 20 &&
-      Math.abs(newX - parseInt(noBtn.style.left || 0)) < 150 &&
-      Math.abs(newY - parseInt(noBtn.style.top  || 0)) < 150
-    );
+  /* Safe distance from screen edges */
+  var padding = 40;
 
-    noBtn.style.left = newX + 'px';
-    noBtn.style.top  = newY + 'px';
+  /* Calculate safe movement area */
+  var minX = padding;
+  var minY = padding;
 
-    /* Count escapes and update messages */
-    noEscapes++;
+  var maxX = window.innerWidth - btnW - padding;
+  var maxY = window.innerHeight - btnH - padding;
 
-    /* Update escape message */
-    var msgIndex = Math.min(noEscapes - 1, escapeMsgs.length - 1);
-    escapeMsg.textContent = escapeMsgs[msgIndex];
+  /* Generate random position */
+  var newX = Math.random() * (maxX - minX) + minX;
+  var newY = Math.random() * (maxY - minY) + minY;
 
-    /* Grow YES button */
-    yesFontSize = Math.min(yesFontSize + 4, 42);
-    yesBtn.style.fontSize = yesFontSize + 'px';
-    yesBtn.style.padding  = Math.min(14 + noEscapes * 2, 28) + 'px ' +
-                            Math.min(36 + noEscapes * 4, 70) + 'px';
+  /* Move the NO button */
+  noBtn.style.left = newX + 'px';
+  noBtn.style.top = newY + 'px';
 
-    /* Update hint text */
-    var hintIndex = Math.min(Math.floor(noEscapes / 2), hintMsgs.length - 1);
-    hintText.textContent = hintMsgs[hintIndex];
-  }
+  /* Count how many times NO escaped */
+  noEscapes++;
+
+  /* Update funny message */
+  var msgIndex = Math.min(noEscapes - 1, escapeMsgs.length - 1);
+  escapeMsg.textContent = escapeMsgs[msgIndex];
+
+  /* Make YES button bigger */
+  yesFontSize = Math.min(yesFontSize + 4, 42);
+  yesBtn.style.fontSize = yesFontSize + 'px';
+
+  yesBtn.style.padding =
+    Math.min(14 + noEscapes * 2, 28) + 'px ' +
+    Math.min(36 + noEscapes * 4, 70) + 'px';
+
+  /* Update hint message */
+  var hintIndex = Math.min(
+    Math.floor(noEscapes / 2),
+    hintMsgs.length - 1
+  );
+
+  hintText.textContent = hintMsgs[hintIndex];
+}
 
 /* Move when cursor hovers over NO button */
 noBtn.addEventListener('mouseenter', function () {

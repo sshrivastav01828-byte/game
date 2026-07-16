@@ -34,14 +34,29 @@
       </p>
     </div>
 
-    <!-- Photo placeholder -->
-    <div class="photo-frame" id="photo-frame">
-      <div class="photo-placeholder">
-        <span>📸</span>
-        <p>Add your photo here!</p>
-        <small>Replace this div with an &lt;img&gt; tag</small>
-      </div>
-    </div>
+    <!-- Love poem -->
+<div class="love-poem">
+
+  <h2>A Little Something For You ❤️</h2>
+
+  <p>
+    In every smile, I find my way,<br>
+    You make brighter every day.<br><br>
+
+    Through every laugh and every cheer,<br>
+    Life feels better when you're near.<br><br>
+
+    I asked a question, simple and true,<br>
+    But my heart already knew the answer was you. ❤️<br><br>
+
+    No matter where this journey may go,<br>
+    There's just one thing I want you to know...<br><br>
+
+    You make my ordinary days feel new,<br>
+    And I'm really, really lucky to have you. 💕
+  </p>
+
+</div>
 
     <!-- Bottom message -->
     <p class="bottom-msg">

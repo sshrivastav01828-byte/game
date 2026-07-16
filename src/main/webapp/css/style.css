@@ -358,3 +358,25 @@ body {
   .yes-heading  { font-size: 28px; }
   .btn-yes, .btn-no { padding: 12px 24px; font-size: 16px; }
 }
+.love-poem {
+  margin: 25px 0;
+  padding: 25px 30px;
+  background: rgba(255, 240, 245, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(255, 77, 121, 0.15);
+  text-align: center;
+}
+
+.love-poem h2 {
+  color: #ff3366;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+.love-poem p {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0;
+}
